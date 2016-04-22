@@ -1,4 +1,4 @@
-// CS 1410 Programming Project #2
+/// CS 1410 Programming Project #2
 // Copyright 2014, Utah Valley University
 //Author: Roger deBry
 // Date last modified: October 2015
