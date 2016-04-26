@@ -9,9 +9,41 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "Exception.h"
 #include "Book.h"  // the file name for your classes may be different
 using namespace std;
+
+int main()
+{
+	// Display Menu 
+	int option = 0;
+	const int CREATE = 1;
+	const int READ = 2;
+
+	cout << "\nCS 1410 Project 5";
+	cout << "\nSelect one of the following two options: ";
+	cout << "\n   1 - create a test file";
+	cout << "\n   2 - read the test file and display the results";
+	cout << "\n>> ";
+
+	// run the selected option
+	cin >> option;
+	if (option == CREATE)
+	{
+		createTestFile();
+		cout << "\nTest file has been created.";
+	}
+	else if (option == READ)
+	{
+		readTestFile();
+	}
+	else
+	{
+		cout << "\nInvalid option.";
+	}
+
+	system("PAUSE");
+	return 0;
+}
 
 void displayBooks(const vector<Book*>& books)
 {
@@ -24,33 +56,7 @@ void displayBooks(const vector<Book*>& books)
 	cout << "\nRecommended Reading List\n";
 
 	// you provide the rest of this code
-	// display each account
-	for (int i = 0; i < books.size(); i++)
-	{
-		Author* pointer = books[i]->getAuthor();
-		cout << books[i]->getTitle() << '\n';
-		cout << pointer->getName() << '\n';
-		cout << pointer->getAddress() << '\n';
-		cout << books[i]->getPages() << " pages\n";
 
-		// use rtti to see what kind of object is being pointed to, and display the 
-		// appropriate child class data values
-		AudioBook* bp = dynamic_cast<AudioBook*>(books[i]);
-		if (bp)
-		{
-			cout << "The length of this audio book is " << bp->getAudioLength() << " minutes." << endl;
-		}
-		else
-		{
-			DigitalBook* bp = dynamic_cast<DigitalBook*>(books[i]);
-			if (bp)
-			{
-				cout << "The format of this digital book is " << bp->getFormat() << endl;
-			}
-		} // end else
-
-		cout << '$' << books[i]->getPrice() << "\n\n\n";
-	}
 }
 
 void createTestFile()
@@ -97,107 +103,19 @@ void createTestFile()
 	}
 }
 
+void readTestFile()
+{
+
+}
+
 void openFile(ifstream& in, const string& _name)
 {
 	// try to open the file
 	in.open(_name);
-	
-	if (in.is_open()==false)
+
+	// if the fail but is set, teh file won't open ... throw an open error
+	if (!in)
 	{
-		throw Exception("file did not open.");
+		throw FileException(OPEN_ERROR);
 	}
-	else
-	{ }
-}
-
-void readTestFile()
-{
-	//create vector of pointers to book objects
-	vector<Book*> Books;
-	//create stream object
-	ifstream file;
-	//create variable to store object type
-	std::string type = "";
-	//try to open file
-	try
-	{
-		openFile(file, "bookData.txt");
-
-		//loop
-		while (file.is_open())
-		{
-			//create book object to use to get input
-			Book* workbook=nullptr;
-			//get object type
-			getline(file, type);
-
-			if (file.is_open())
-			{
-				if (type == "BOOK")
-				{
-					workbook = new Book();
-				}
-				else if (type == "AUDIOBOOK")
-				{
-					workbook = new AudioBook();
-				}
-				else if (type == "DIGITALBOOK")
-				{
-					workbook = new DigitalBook();
-				}
-
-			}
-			try
-			{
-				workbook->readData(file);
-				Books.push_back(workbook);
-			}
-			catch (Exception Not_Reading)
-			{
-				cout << endl << Not_Reading.getdescription();
-				file.close();
-
-			}
-		};
-		displayBooks(Books);
-	}
-	catch (Exception Not_Open)
-	{
-		cout << endl << Not_Open.getdescription();
-	}
-	displayBooks(Books);
-}
-
-
-int main()
-{
-	// Display Menu 
-	int option = 0;
-	const int CREATE = 1;
-	const int READ = 2;
-
-	cout << "\nCS 1410 Project 5";
-	cout << "\nSelect one of the following two options: ";
-	cout << "\n   1 - create a test file";
-	cout << "\n   2 - read the test file and display the results";
-	cout << "\n>> ";
-
-	// run the selected option
-	cin >> option;
-	if (option == CREATE)
-	{
-		createTestFile();
-		cout << "\nTest file has been created.";
-	}
-	else if (option == READ)
-	{
-		readTestFile();
-	}
-	else
-	{
-		cout << "\nInvalid option.";
-	}
-
-	system("PAUSE");
-	return 0;
 }

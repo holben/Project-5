@@ -1,29 +1,23 @@
 #pragma once
 #include <string>
 #include <fstream>
-#include "Exception.h"
 class Author
 {
 private:
-	std::string name;
-	std::string address;
+	std::string name, address;
 
 public:
-	//constructor
 	Author();
-	Author(std::string name_, std::string address_);
+	Author(std::string name, std::string address);
 
 	//getters
 	std::string getName();
 	std::string getAddress();
 
 	//setters
-	void setName(std::string name_);
-	void setAddress(std::string address_);
-
 	//persistence
-	void readData(std::ifstream &filename);
-	void writeData(std::ofstream &filename);
+	void readdata(std::ifstream &filename);
+	void writedata(std::ofstream &filename);
 
 	~Author();
 };

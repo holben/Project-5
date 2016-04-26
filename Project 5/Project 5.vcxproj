@@ -142,20 +142,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="bookData.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Author.h" />
     <ClInclude Include="Book.h" />
-    <ClInclude Include="Exception.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Author.cpp" />
     <ClCompile Include="Book.cpp" />
-    <ClCompile Include="Exception.cpp" />
     <ClCompile Include="Project 5.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
