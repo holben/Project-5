@@ -1,0 +1,20 @@
+AUDIOBOOK
+J.K.Rowling
+Edinburgh, Scotland
+Harry Potter and the Sorcerer's Stone
+256
+24.95
+415
+DIGITALBOOK
+Suzanne Collins
+Connecticut, USA
+Mockingjay
+400
+12.99
+PDF
+BOOK
+J.R.R. Tolkien
+Bournmouth, England
+The Hobbit
+322
+14.29
