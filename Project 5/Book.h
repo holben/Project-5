@@ -4,8 +4,7 @@
 
 class Book
 {
-public:
-private:
+protected:
 
 	int pages;
 	double price;
@@ -16,12 +15,12 @@ public:
 
 	//constructor
 	Book();
-	Book(int pages_, double price_, Author author_, std::string title_);
+	Book(Author* author_, std::string title_, int pages_, double price_);
 
 	//getters
 	int getPages();
 	double getPrice();
-	Author getAuthor();
+	Author* getAuthor();
 	std::string getTitle();
 
 	//setters
@@ -31,8 +30,8 @@ public:
 	void setTitle(std::string title_);
 
 	//readwrite
-	void virtual readData(std::ifstream &filename);
-	void virtual writeData(std::ofstream &filename);
+	virtual void readData(std::ifstream &filename);
+	virtual void writeData(std::ofstream &filename);
 
 	~Book();
 };
@@ -46,7 +45,7 @@ private:
 public:
 	//constructor
 	AudioBook();
-	AudioBook(double audioLength_, int pages_, double price_, Author* author_, std::string title_);
+	AudioBook(Author* author_, std::string title_, int pages_, double price_, double audioLength_);
 
 	//getters
 	double getAudioLength();
@@ -68,10 +67,10 @@ private:
 public:
 	//constructor
 	DigitalBook();
-	DigitalBook(std::string format_, int pages_, double price_, Author* author_, std::string title_);
+	DigitalBook(Author* author_, std::string title_, int pages_, double price_, std::string format_);
 
 	//getters
-	double getFormat();
+	std::string getFormat();
 
 	//setters
 	void setFormat(std::string format_);
